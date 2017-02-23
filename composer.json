@@ -1,0 +1,22 @@
+{
+    "name": "jyj1993126/bugly",
+    "description": "A laravel service for handling bugly webhook",
+    "type": "library",
+    "require": {
+        "laravel/framework": "^5.1",
+        "php": ">=5.4"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "LeonJ",
+            "email": "jyj1993126@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "jyj1993126\\Bugly" : "src/"
+        }
+    }
+}
