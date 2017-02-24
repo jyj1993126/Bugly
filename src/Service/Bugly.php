@@ -11,14 +11,14 @@ use stdClass;
  * @author Leon J
  * @since 2017/2/22
  */
-class WebHook
+class Bugly
 {
     const REQUEST_PARAMS = [ 'eventType', 'eventContent', 'timestamp', 'isEncrypt', 'signature' ];
 
     /**
      * @var string
      */
-    private $appKey;
+    protected $appKey;
 
     /**
      * @var array
@@ -41,6 +41,7 @@ class WebHook
 
     /**
      * @param array $request
+     * @return $this
      * @throws ResolveException
      * @throws UninitializedException
      */
@@ -73,6 +74,8 @@ class WebHook
                     $this->requestBody[$param] = $request[$param];
             }
         }
+
+        return $this;
     }
 
     /**

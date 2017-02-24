@@ -1,0 +1,54 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class SetupBuglyTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('bugly', function (Blueprint $table) {
+            $table->increments('id');
+
+            $table->string('app_id');
+            $table->string('pid');
+            $table->string('exp_id');
+            $table->string('title');
+            $table->string('description');
+            $table->integer('secret');
+            $table->string('password');
+            $table->string('users');
+            $table->string('url');
+            $table->integer('download_limit');
+            $table->integer('status');
+            $table->timestamp('create_time');
+            $table->timestamp('update_time');
+            $table->string('version');
+            $table->string('md5');
+            $table->string('creator');
+            $table->integer('download_num');
+            $table->integer('feedback_num');
+
+            $table->timestamps();
+
+		   $table->unique(['app_id','pid','exp_id']);
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('bugly');
+    }
+}
+
