@@ -13,10 +13,11 @@ class Bugly extends BuglySDK
 {
     /**
      * @param Request $request
+     * @param $appName
      * @return BuglySDK
      */
-    public function resolveRequest(Request $request)
+    public function resolveRequest(Request $request, $appName)
     {
-        return parent::resolve($request->all());
+        return parent::resolve($request->all(),config("bugly.app_keys.{$appName}"));
     }
 }

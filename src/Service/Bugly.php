@@ -3,7 +3,6 @@
 namespace jyj1993126\Bugly\Service;
 
 use jyj1993126\Bugly\ResolveException;
-use jyj1993126\Bugly\UninitializedException;
 use jyj1993126\Bugly\Utils;
 use stdClass;
 
@@ -16,11 +15,6 @@ class Bugly
     const REQUEST_PARAMS = [ 'eventType', 'eventContent', 'timestamp', 'isEncrypt', 'signature' ];
 
     /**
-     * @var string
-     */
-    protected $appKey;
-
-    /**
      * @var array
      */
     public $requestBody;
@@ -31,27 +25,15 @@ class Bugly
     public $eventContentBody;
 
     /**
-     * WebHook constructor.
-     * @param string $appKey
-     */
-    public function __construct($appKey)
-    {
-        $this->appKey = $appKey;
-    }
-
-    /**
      * @param array $request
+     * @param $appKey
      * @return $this
      * @throws ResolveException
-     * @throws UninitializedException
      */
-    public function resolve(array $request)
+    public function resolve(array $request, $appKey)
     {
-        if (is_null($this->appKey)) {
-            throw new UninitializedException( 'appKey' );
-        }
 
-        if (!Utils::validate($request, $this->appKey)) {
+        if (!Utils::validate($request, $appKey)) {
             throw new ResolveException( 'signature' );
         }
 
@@ -64,7 +46,7 @@ class Bugly
                     break;
                 case 'eventContent':
                     if( $request['isEncrypt'] ) {
-                        $eventContentBody = Utils::decrypt($request[$param], $this->appKey);
+                        $eventContentBody = Utils::decrypt($request[$param], $appKey);
                     }else {
                         $eventContentBody = $request[$param];
                     }

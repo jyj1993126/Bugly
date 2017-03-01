@@ -3,7 +3,6 @@
 namespace jyj1993126\Bugly\Laravel;
 
 use Illuminate\Support\ServiceProvider as laravelServiceProvider;
-use jyj1993126\Bugly\Laravel\BuglyCommands;
 
 /**
  * @author Leon J
@@ -18,7 +17,7 @@ class ServiceProvider extends laravelServiceProvider
         );
 
         $this->app->singleton('Bugly', function ($app){
-            return new Bugly(config('bugly.app_key'));
+            return new Bugly();
         });
     }
 

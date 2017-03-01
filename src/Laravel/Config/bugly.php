@@ -1,6 +1,6 @@
 <?php
 
 return [
-    // your app key
-    'app_key' => env('BUGLY_APP_KEY',''),
+    // your app key $name => $key
+    'app_keys' => [],
 ];
